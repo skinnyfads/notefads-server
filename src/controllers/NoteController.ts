@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import generateId from "../fns/generateId.js";
 import NoteConstruct from "../models/Note.js";
 
-async function createNote(req: Request, res: Response) {
+async function create(req: Request, res: Response) {
   const id = await generateId(NoteConstruct);
   const { title, content, author } = req.body;
 
@@ -14,4 +14,4 @@ async function createNote(req: Request, res: Response) {
   return res.status(501).send({ message: "Some keys is missing" });
 }
 
-export default { createNote };
+export default { create };
