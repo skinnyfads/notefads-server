@@ -14,4 +14,16 @@ async function create(req: Request, res: Response) {
   return res.status(501).send({ message: "Some keys is missing" });
 }
 
-export default { create };
+async function remove(req: Request, res: Response) {
+  const id = req.params.id;
+  const note = await NoteConstruct.findOne({ id });
+
+  if (note) {
+    await note.delete();
+    return res.send({ message: "Delete successfully" });
+  } else {
+    return res.status(501).send({ message: "Note not found" });
+  }
+}
+
+export default { create, remove };
