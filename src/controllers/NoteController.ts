@@ -26,4 +26,9 @@ async function remove(req: Request, res: Response) {
   }
 }
 
-export default { create, remove };
+async function getAll(req: Request, res: Response) {
+  const notes = await NoteConstruct.find();
+  return res.send(notes);
+}
+
+export default { create, remove, getAll };
